@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Atualizar o sistema e instalar pré-requisitos
-echo "Atualizando o sistema e instalando pré-requisitos..."
-sudo apt-get update
-sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+# echo "Atualizando o sistema e instalando pré-requisitos..."
+# sudo apt-get update
+# sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 
 
 # Instalação do Docker, se necessário
