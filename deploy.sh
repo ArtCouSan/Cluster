@@ -5,7 +5,6 @@
 # sudo apt-get update
 # sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 
-
 # Instalação do Docker, se necessário
 if ! command -v docker &> /dev/null; then
     echo "Docker não está instalado. Instalando Docker..."
@@ -47,14 +46,15 @@ SERVICES="infraestrutura/07-services.yaml"
 # Construir e enviar a imagem do Flask para o Registry do MicroK8s
 FLASK_IMAGE_NAME="localhost:5000/sensorapi:latest"
 echo "Construindo a imagem Flask: $FLASK_IMAGE_NAME"
-docker build -t $FLASK_IMAGE_NAME -f app/Dockerfile.flask .
+cd app
+docker build -t $FLASK_IMAGE_NAME -f Dockerfile.flask .
 echo "Enviando a imagem Flask para o Registry local..."
 docker push $FLASK_IMAGE_NAME
 
 # Construir e enviar a imagem MySQL para o Registry do MicroK8s
 MYSQL_IMAGE_NAME="localhost:5000/mysqlcustom:latest"
 echo "Construindo a imagem MySQL: $MYSQL_IMAGE_NAME"
-docker build -t $MYSQL_IMAGE_NAME -f app/Dockerfile.mysql .
+docker build -t $MYSQL_IMAGE_NAME -f Dockerfile.mysql .
 echo "Enviando a imagem MySQL para o Registry local..."
 docker push $MYSQL_IMAGE_NAME
 
@@ -62,6 +62,8 @@ if [ $? -ne 0 ]; then
     echo "Erro ao enviar imagens para o Registry. Abortando."
     exit 1
 fi
+
+cd ..
 
 # Aplicando os arquivos YAML
 echo "Aplicando configurações de Namespace..."
