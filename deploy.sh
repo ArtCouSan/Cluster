@@ -52,7 +52,7 @@ echo "Enviando a imagem Flask para o Registry local..."
 docker push $FLASK_IMAGE_NAME
 
 # Construir e enviar a imagem MySQL para o Registry do MicroK8s
-MYSQL_IMAGE_NAME="localhost:5000/mysqlcustom:latest"
+MYSQL_IMAGE_NAME="localhost:3306/mysql:latest"
 echo "Construindo a imagem MySQL: $MYSQL_IMAGE_NAME"
 docker build -t $MYSQL_IMAGE_NAME -f Dockerfile.mysql .
 echo "Enviando a imagem MySQL para o Registry local..."
