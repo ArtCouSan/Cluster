@@ -11,3 +11,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/mnt/data/mysql"
