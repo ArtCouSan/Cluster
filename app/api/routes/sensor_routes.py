@@ -47,18 +47,9 @@ def process_data(data, app):
 @sensor_blueprint.route('/sensor-data', methods=['GET'])
 def get_data():
     measurements = fetch_data()
-    delayed_result = delayed(process_measurements)(measurements)
-    result = compute(delayed_result)[0]
-    return jsonify(result), 200
+    return jsonify(measurements), 200
 
 
 def fetch_data():
     measurements = WaterMeasurements.query.all()
-    return measurements
-
-
-def process_measurements(measurements):
-    data = [{'parameter_id': m.parameter_id, 'value': m.value} for m in measurements]
-    df = pd.DataFrame(data)
-    result = df.groupby('parameter_id').mean().compute()
-    return result.to_dict()
+    return [{'parameter_id': m.parameter_id, 'value': m.value} for m in measurements]
