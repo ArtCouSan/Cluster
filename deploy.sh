@@ -16,7 +16,7 @@ if ! command -v docker &> /dev/null; then
 fi
 
 sudo usermod -aG docker $USER
-newgrp
+newgrp docker
 
 # Instalação do MicroK8s, se necessário
 if ! command -v microk8s &> /dev/null; then
