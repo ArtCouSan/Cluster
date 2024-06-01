@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: mysql:5.7
+        image: localhost:3306/mysql:tag
         ports:
         - containerPort: 3306
         env:
