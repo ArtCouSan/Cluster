@@ -56,10 +56,11 @@ MYSQL="infraestrutura/05-mysql-deployment.yaml"
 FLASK="infraestrutura/06-flask-deployment.yaml"
 SERVICES="infraestrutura/07-services.yaml"
 
+cd app
+
 # Construir e enviar a imagem do Flask para o Registry do MicroK8s
 FLASK_IMAGE_NAME="localhost:5000/sensorapi:latest"
 echo "Construindo a imagem Flask: $FLASK_IMAGE_NAME"
-cd app
 docker build --no-cache -t $FLASK_IMAGE_NAME -f Dockerfile.flask .
 echo "Enviando a imagem Flask para o Registry local..."
 docker push $FLASK_IMAGE_NAME
