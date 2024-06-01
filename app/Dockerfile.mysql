@@ -1,7 +1,8 @@
 # Usar a imagem oficial do MySQL
 FROM mysql:5.7
 
-RUN ls -l ./scripts
+# Definir o diretório de trabalho dentro do container
+WORKDIR /app
 
 # Copiar os scripts SQL para o diretório que é executado durante a inicialização do container
 COPY ./scripts/ /docker-entrypoint-initdb.d/
