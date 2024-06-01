@@ -1,6 +1,8 @@
 # Usar a imagem oficial do MySQL
 FROM mysql:5.7
 
+# Definir o diretório de trabalho dentro do container
+WORKDIR /app/
 
 # Listar os conteúdos de /app
 RUN pwd
