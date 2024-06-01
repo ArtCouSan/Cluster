@@ -6,10 +6,10 @@ spec:
   selector:
     app: mysql
   ports:
-    - protocol: TCP
-      port: 3306
+    - port: 3306
       targetPort: 3306
-  clusterIP: None 
+      nodePort: 30306
+  type: NodePort
 ---
 apiVersion: v1
 kind: Service
