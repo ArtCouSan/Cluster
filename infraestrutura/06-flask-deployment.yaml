@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: flask-container
-        image: localhost:5000/sensorapi:tag
+        image: localhost:5000/sensorapi:latest
         ports:
         - containerPort: 5000
         env:
