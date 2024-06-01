@@ -1,5 +1,7 @@
 USE sensordb;
 
+SET time_zone = '-03:00';
+
 CREATE TABLE WaterQualityParameters (
     parameter_id INT AUTO_INCREMENT PRIMARY KEY,
     parameter_name VARCHAR(50) NOT NULL,

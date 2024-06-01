@@ -7,12 +7,12 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      - db
+      - mysql-service
     environment:
         PYTHONUNBUFFERED: 0
         SQLALCHEMY_DATABASE_URI: mysql+pymysql://user:password@mysql-service/sensordb
 
-  db:
+  mysql-service:
     build:
       context: .
       dockerfile: Dockerfile.mysql
