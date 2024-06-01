@@ -2,7 +2,7 @@
 FROM mysql:5.7
 
 # Listar os conteúdos de /app
-RUN ls -la /
+RUN pwd
 
 # Copiar os scripts SQL para o diretório que é executado durante a inicialização do container
 COPY /scripts/ /docker-entrypoint-initdb.d/
