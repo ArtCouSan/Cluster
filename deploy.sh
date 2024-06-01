@@ -34,6 +34,18 @@ microk8s enable registry
 # Esperar o MicroK8s estar pronto após habilitar o registry
 microk8s status --wait-ready
 
+# Iniciar o Docker Registry Local, se necessário
+if ! docker ps | grep -q registry; then
+    echo "Iniciando o Docker Registry Local..."
+    docker run -d -p 5000:5000 --name registry registry:2
+fi
+
+# Verificar se o Registry está em execução
+if ! docker ps | grep -q registry; then
+    echo "Erro ao iniciar o Docker Registry Local. Abortando."
+    exit 1
+fi
+
 # Definindo os caminhos para os arquivos YAML
 NAMESPACE="infraestrutura/01-namespaces.yaml"
 PV="infraestrutura/02-pv-volume.yaml"
@@ -52,7 +64,7 @@ echo "Enviando a imagem Flask para o Registry local..."
 docker push $FLASK_IMAGE_NAME
 
 # Construir e enviar a imagem MySQL para o Registry do MicroK8s
-MYSQL_IMAGE_NAME="localhost:3306/mysql:latest"
+MYSQL_IMAGE_NAME="localhost:5000/mysqlcustom:latest"
 echo "Construindo a imagem MySQL: $MYSQL_IMAGE_NAME"
 docker build -t $MYSQL_IMAGE_NAME -f Dockerfile.mysql .
 echo "Enviando a imagem MySQL para o Registry local..."
