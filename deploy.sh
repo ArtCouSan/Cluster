@@ -100,7 +100,7 @@ echo "Aplicando configurações dos Services..."
 microk8s kubectl apply -f $SERVICES
 
 echo "Verificando status dos Deployments e Services..."
-microk8s kubectl get deployments
-microk8s kubectl get services
+microk8s kubectl get deployments -n --all-namespaces
+microk8s kubectl get services -n --all-namespaces
 
 echo "Deploy concluído com sucesso."
