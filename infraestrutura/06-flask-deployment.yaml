@@ -2,12 +2,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flask-app
+  namespace: api
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: flask
-      namespace: api
   template:
     metadata:
       labels:
